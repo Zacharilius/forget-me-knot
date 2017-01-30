@@ -4,10 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { ReminderDetailsComponent } from './reminder/reminder-details/reminder-details.component';
+import { ReminderListComponent } from './reminder/reminder-list/reminder-list.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ReminderDetailsComponent,
+    ReminderListComponent
   ],
   imports: [
     BrowserModule,

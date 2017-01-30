@@ -1,0 +1,21 @@
+<div *ngIf="reminder" class="row">
+  <div class="col-md-12">
+    <h2 *ngIf="reminder._id">Reminder Details</h2>
+    <h2 *ngIf="!reminder._id">New Reminder</h2>
+  </div>
+</div>
+<div *ngIf="reminder" class="row">
+  <form class="col-md-12">
+    <div class="form-group">
+      <label for="reminder-title">Title</label>
+      <input class="form-control" name="reminder-title" [(ngModel)]="reminder.title" placeholder="Call my Mom"/>
+    </div>
+    <div class="form-group">
+      <label for="reminder-day-frequency">Remind me every ...</label>
+      <input class="form-control" name="reminder-day-frequency" [(ngModel)]="reminder.dayFrequency" placeholder="7"/>
+    </div>
+    <button class="btn btn-primary" *ngIf="!reminder._id" (click)="createReminder(reminder)">Create</button>
+    <button class="btn btn-info" *ngIf="reminder._id" (click)="updateReminder(reminder)">Update</button>
+    <button class="btn btn-danger" *ngIf="reminder._id" (click)="deleteReminder(reminder._id)">Delete</button>
+  </form>
+</div>
