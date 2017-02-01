@@ -1,17 +1,17 @@
-<div class="mdl-grid">
-  <div class="mdl-card mdl-cell mdl-cell--6-col-desktop mdl-cell--6-col-tablet mdl-cell--12-col-phone">
+<div class="row">
+  <div class="col-md-5">
     <h2>Reminders</h2>
-    <ul class="mdl-list">
-      <li class="mdl-list__item"
+    <ul class="list-group">
+      <li class="list-group-item"
         *ngFor="let reminder of reminders"
         (click)="selectReminder(reminder)"
         [class.active]="reminder === selectedReminder">
         {{reminder.title}}
       </li>
     </ul>
-    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" (click)="createNewReminder()">New</button>
+    <button class="btn btn-warning" (click)="createNewReminder()">New</button>
   </div>
-  <div class="mdl-card mdl-cell mdl-cell--6-col-desktop mdl-cell--6-col-tablet mdl-cell--12-col-phone">
+  <div class="col-md-5 col-md-offset-2">
     <reminder-details
       [reminder]="selectedReminder"
       [createHandler]="addReminder"
