@@ -1,0 +1,20 @@
+{
+  "name": "forgetmeknot",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Zacharilius <zabensley@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/Zacharilius/forget-me-knot",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.4.2"
+  }
+}
