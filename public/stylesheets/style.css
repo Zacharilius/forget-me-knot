@@ -1,3 +1,50 @@
+/* Color themes */
+
+/* Angular */
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
+}
+
+/* Site */
+body {
+    font-family: roboto;
+}
+
+/* Navbar Bootstrap Overrides */
+.navbar-inverse .navbar-brand {
+    color: #fff;
+}
+
+.navbar-inverse .navbar-collapse,
+.navbar-inverse .navbar-form {
+    border-color: #9797FF;
+}
+
+.navbar-inverse .navbar-toggle {
+    border-color: #9797FF;
+}
+
+.navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
+    background-color: #9797FF;
+}
+
+.navbar-inverse {
+    border-color: #9797FF;
+    background-color: #6B6BFF;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #fff;
+}
+
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .active > a:hover,
+.navbar-inverse .navbar-nav > .active > a:focus {
+    color: #fff;
+    background-color: #9797FF;
+}
+
+/* Main */
+#fmk-main {
+    margin-top: 60px;
 }

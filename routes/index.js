@@ -10,14 +10,15 @@ router.get('/', function(req, res, next) {
 module.exports = router;
 
 router.get('/data', function(req,res){
-    res.json([{"id": 1, "name": "Mymm", "city": "Pantano do Sul"},
-        {"id": 2, "name": "Skyble", "city": "Guilmaro"},
-        {"id": 3, "name": "Tagfeed", "city": "Gnosjö"},
-        {"id": 4, "name": "Realcube", "city": "Jrashen"},
-        {"id": 5, "name": "Bluejam", "city": "Zhangjiawo"},
-        {"id": 6, "name": "Jayo", "city": "Obonoma"},
-        {"id": 7, "name": "Cogidoo", "city": "Sungsang"},
-        {"id": 8, "name": "Avavee", "city": "Diawara"},
-        {"id": 9, "name": "Tagtune", "city": "Monywa"},
-        {"id": 10, "name": "Centimia", "city": "Retkovci"}]);
+    res.json([
+        {"id": 1, "title": "Call Mom", "startReminderTime": "2017-02-04T22:04:44.524Z", "lastReminderTime": "2017-02-05T22:04:44.524Z", "remindEveryDays": 5},
+        {"id": 2, "title": "Call Dad", "startReminderTime": "2017-02-04T22:04:44.524Z", "lastReminderTime": "2017-02-05T22:04:44.524Z", "remindEveryDays": 5},
+        {"id": 3, "title": "Call Sister", "startReminderTime": "2017-02-04T22:04:44.524Z", "lastReminderTime": "2017-02-05T22:04:44.524Z", "remindEveryDays": 5},
+        {"id": 4, "title": "Go for a run", "startReminderTime": "2017-02-04T22:04:44.524Z", "lastReminderTime": "2017-02-05T22:04:44.524Z", "remindEveryDays": 5},
+        {"id": 5, "title": "Eat a vegetable", "startReminderTime": "2017-02-04T22:04:44.524Z", "lastReminderTime": "2017-02-05T22:04:44.524Z", "remindEveryDays": 5},
+        {"id": 6, "title": "Read", "startReminderTime": "2017-02-04T22:04:44.524Z", "lastReminderTime": "2017-02-05T22:04:44.524Z", "remindEveryDays": 5},
+        {"id": 7, "title": "Ha", "startReminderTime": "2017-02-04T22:04:44.524Z", "lastReminderTime": "2017-02-05T22:04:44.524Z", "remindEveryDays": 5},
+        {"id": 8, "title": "Save $100", "startReminderTime": "2017-02-04T22:04:44.524Z", "lastReminderTime": "2017-02-05T22:04:44.524Z", "remindEveryDays": 5},
+        {"id": 9, "title": "Call Brother", "startReminderTime": "2017-02-04T22:04:44.524Z", "lastReminderTime": "2017-02-05T22:04:44.524Z", "remindEveryDays": 5},
+        {"id": 10, "title": "Call Ex-wife", "startReminderTime": "2017-02-04T22:04:44.524Z", "lastReminderTime": "2017-02-05T22:04:44.524Z", "remindEveryDays": 5}]);
 });
