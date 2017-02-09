@@ -59,6 +59,14 @@ body {
     width: 100%;
 }
 
+/* Add new reminder */
+#fmk-add-slide-down {
+}
+
+.fmk-container {
+    position: relative;
+}
+
 /* Add animation */
 .fmk-reminder-container.ng-enter.ng-enter-active,
 .fmk-reminder-container.ng-leave {
@@ -87,7 +95,6 @@ body {
     text-align: center;
     vertical-align: middle;
     border-radius: 50%;
-
 }
 
 .fmk-close-reminder-container:hover {

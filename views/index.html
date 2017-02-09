@@ -50,23 +50,44 @@
       </div>
     </div>
     <div ng-controller="myController" class="container"  ng-cloak>
-        <h3>Reminders
-            <button ng-click="addReminder()" type="button" class="btn btn-default">Add</button>
-            <button ng-click="updateReminders()" type="button" class="btn btn-default">Update</button>
-        </h3>
-        <div class="col-md-6 col-lg-4 fmk-reminder-container" ng-repeat="reminder in reminders">
-            <p>{{reminder.title}} every {{reminder.remindEveryDays}} days</p>
-            <div class="input-group">
-                <input ng-model="reminder.title" type="text" class="form-control" placeholder="{{reminder.title}}" aria-label="Amount (to the nearest dollar)">
+        <button ng-show="!showAddReminderSlideDown" ng-click="toggleAddReminder()" type="button" class="btn btn-default">Add</button>
+        <button ng-show="showAddReminderSlideDown" ng-click="addReminder()" type="button" class="btn btn-default">Add</button>
+        <button ng-show="!showAddReminderSlideDown" ng-click="updateReminders()" type="button" class="btn btn-default">Update</button>
+        <div ng-show="showAddReminderSlideDown">
+            <div id="fmk-add-slide-down" class="col-md-6 col-lg-4 fmk-reminder-container">
+                <h3>Add Reminder</h3>
+
+                <div class="input-group">
+                    <input ng-model="newReminder.title" type="text" class="form-control" placeholder="{{newReminder.title}}" aria-label="Amount (to the nearest dollar)">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon">Remind me every</span>
+                    <input ng-model="newReminder.remindEveryDays"  type="text" class="form-control" placeholder="{{newReminder.remindEveryDays}}" aria-label="Amount (to the nearest dollar)">
+                    <span class="input-group-addon">days</span>
+                </div>
+                <span ng-click="updateReminder(newReminder)" class="fmk-close-reminder-container">X</span>
             </div>
-            <div class="input-group">
-                <span class="input-group-addon">Remind me every</span>
-                <input ng-model="reminder.remindEveryDays"  type="text" class="form-control" placeholder="{{reminder.remindEveryDays}}" aria-label="Amount (to the nearest dollar)">
-                <span class="input-group-addon">days</span>
+        </div>
+
+        <div ng-show="!showAddReminderSlideDown">
+            <h3>Reminders</h3>
+            <div class="col-md-6 col-lg-4 fmk-reminder-container" ng-repeat="reminder in reminders">
+                <p>{{reminder.title}} every {{reminder.remindEveryDays}} days</p>
+                <div class="input-group">
+                    <input ng-model="reminder.title" type="text" class="form-control" placeholder="{{reminder.title}}" aria-label="Amount (to the nearest dollar)">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon">Remind me every</span>
+                    <input ng-model="reminder.remindEveryDays"  type="text" class="form-control" placeholder="{{reminder.remindEveryDays}}" aria-label="Amount (to the nearest dollar)">
+                    <span class="input-group-addon">days</span>
+                </div>
+                <span ng-click="deleteReminder($index, reminder)" class="fmk-close-reminder-container">X</span>
             </div>
-            <span ng-click="deleteReminder($index, reminder)" class="fmk-close-reminder-container">X</span>
         </div>
     </div>
+
+    <div id="fmk-cover"></div>
+
     <script src="components/angular/angular.min.js" type="text/javascript"></script>
     <script src="components/angular-animate/angular-animate.min.js" type="text/javascript"></script>
 

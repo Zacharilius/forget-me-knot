@@ -27,8 +27,8 @@ router.get('/api/reminders', function(req, res) {
 });
 
 router.post('/api/reminders', function(req, res) {
-    var newReminder = req.body.reminders
-    console.log(newReminder);
+    var message = req.body;
+    var reminders = message;
     res.json(reminders);
 });
 

@@ -1,17 +1,33 @@
 var app = angular.module('forgetMeKnotApp', ['ngAnimate']);
 
 app.controller('myController', function($scope, $http) {
+    $scope.showAddReminderSlideDown = false;
+    $scope.newReminder = {"title": "Call my Mom", "remindEveryDays": 7};
+
     $scope.reminders = [];
 
+    $scope.toggleAddReminder = function() {
+        $scope.showAddReminderSlideDown = !$scope.showAddReminderSlideDown;
+    }
+
     $scope.addReminder = function() {
-        var reminder = {"title": "", "startReminderTime": "", "lastReminderTime": "", "remindEveryDays": 1};
-        $scope.reminders.unshift(reminder);
+        $scope.reminders.push($scope.newReminder);
+        var request = $http.post('/api/reminders', $scope.reminders);
+        request.success(function(data) {
+            $scope.reminders = data;
+            $scope.toggleAddReminder();
+            console.log($scope.reminders.length);
+        });
+        request.error(function(data){
+            console.log('Error: ' + data);
+        });
     }
 
     $scope.updateReminders = function() {
         var request = $http.post('/api/reminders', $scope.reminders);
         request.success(function(data) {
             $scope.reminders = data;
+            console.log($scope.reminders.length);
         });
         request.error(function(data){
             console.log('Error: ' + data);
@@ -24,8 +40,7 @@ app.controller('myController', function($scope, $http) {
 
         var request = $http.delete('/api/reminders/' + reminder.id);
         request.success(function(data) {
-            console.log(data);
-            console.log('delete');
+            /* Nothing */
         });
         request.error(function(data){
             console.log('Error: ' + data);
