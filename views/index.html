@@ -50,8 +50,8 @@
       </div>
     </div>
     <div ng-controller="myController" class="container"  ng-cloak>
-        <button ng-show="!showAddReminderSlideDown" ng-click="toggleAddReminder()" type="button" class="btn btn-default">Add</button>
-        <button ng-show="showAddReminderSlideDown" ng-click="addReminder()" type="button" class="btn btn-default">Add</button>
+        <button ng-show="!showAddReminderSlideDown" ng-click="showAddReminder()" type="button" class="btn btn-default">Add</button>
+        <button ng-show="showAddReminderSlideDown" ng-click="createNewReminder()" type="button" class="btn btn-default">Create new Reminder</button>
         <button ng-show="!showAddReminderSlideDown" ng-click="updateReminders()" type="button" class="btn btn-default">Update</button>
         <div ng-show="showAddReminderSlideDown">
             <div id="fmk-add-slide-down" class="col-md-6 col-lg-4 fmk-reminder-container">

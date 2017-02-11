@@ -6,16 +6,20 @@ app.controller('myController', function($scope, $http) {
 
     $scope.reminders = [];
 
-    $scope.toggleAddReminder = function() {
+    $scope.showAddReminder = function() {
+        toggleAddReminder();
+    }
+
+    var toggleAddReminder = function() {
         $scope.showAddReminderSlideDown = !$scope.showAddReminderSlideDown;
     }
 
-    $scope.addReminder = function() {
+    $scope.createNewReminder = function() {
         $scope.reminders.push($scope.newReminder);
         var request = $http.post('/api/reminders', $scope.reminders);
         request.success(function(data) {
             $scope.reminders = data;
-            $scope.toggleAddReminder();
+            toggleAddReminder();
             console.log($scope.reminders.length);
         });
         request.error(function(data){
