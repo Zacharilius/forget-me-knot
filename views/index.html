@@ -81,7 +81,7 @@
                     <input ng-model="reminder.remindEveryDays"  type="text" class="form-control" placeholder="{{reminder.remindEveryDays}}" aria-label="Amount (to the nearest dollar)">
                     <span class="input-group-addon">days</span>
                 </div>
-                <span ng-click="deleteReminder($index, reminder)" class="fmk-close-reminder-container">X</span>
+                <span ng-click="deleteReminder($index, reminder)" class="fmk-close-reminder-container">X<span class="fmk-delete-reminder-tooltip">Delete</span></span>
             </div>
         </div>
     </div>
