@@ -50,9 +50,11 @@
       </div>
     </div>
     <div ng-controller="myController" class="container"  ng-cloak>
-        <button ng-show="!showAddReminderSlideDown" ng-click="showAddReminder()" type="button" class="btn btn-default">Add</button>
+        <button ng-show="!showAddReminderSlideDown" ng-click="showAddReminder()" type="button" class="btn btn-default">Add new Reminder</button>
+        <button ng-show="!showAddReminderSlideDown" ng-click="updateReminders()" type="button" class="btn btn-default">Update Reminders</button>
+
         <button ng-show="showAddReminderSlideDown" ng-click="createNewReminder()" type="button" class="btn btn-default">Create new Reminder</button>
-        <button ng-show="!showAddReminderSlideDown" ng-click="updateReminders()" type="button" class="btn btn-default">Update</button>
+        <button ng-show="showAddReminderSlideDown" ng-click="hideAddReminder()" type="button" class="btn btn-default">View Reminders</button>
         <div ng-show="showAddReminderSlideDown">
             <div id="fmk-add-slide-down" class="col-md-6 col-lg-4 fmk-reminder-container">
                 <h3>Add Reminder</h3>
@@ -65,7 +67,6 @@
                     <input ng-model="newReminder.remindEveryDays"  type="text" class="form-control" placeholder="{{newReminder.remindEveryDays}}" aria-label="Amount (to the nearest dollar)">
                     <span class="input-group-addon">days</span>
                 </div>
-                <span ng-click="updateReminder(newReminder)" class="fmk-close-reminder-container">X</span>
             </div>
         </div>
 

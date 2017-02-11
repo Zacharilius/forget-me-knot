@@ -1,65 +1,73 @@
-var app = angular.module('forgetMeKnotApp', ['ngAnimate']);
+(function() {
+    'use strict';
 
-app.controller('myController', function($scope, $http) {
-    $scope.showAddReminderSlideDown = false;
-    $scope.newReminder = {"title": "Call my Mom", "remindEveryDays": 7};
+    var app = angular.module('forgetMeKnotApp', ['ngAnimate']);
 
-    $scope.reminders = [];
+    app.controller('myController', function($scope, $http) {
+        $scope.showAddReminderSlideDown = false;
+        $scope.newReminder = {"title": "Call my Mom", "remindEveryDays": 7};
 
-    $scope.showAddReminder = function() {
-        toggleAddReminder();
-    }
+        $scope.reminders = [];
 
-    var toggleAddReminder = function() {
-        $scope.showAddReminderSlideDown = !$scope.showAddReminderSlideDown;
-    }
+        $scope.showAddReminder = function() {
+            $scope.showAddReminderSlideDown = true;
+        }
 
-    $scope.createNewReminder = function() {
-        $scope.reminders.push($scope.newReminder);
-        var request = $http.post('/api/reminders', $scope.reminders);
-        request.success(function(data) {
-            $scope.reminders = data;
-            toggleAddReminder();
-            console.log($scope.reminders.length);
-        });
-        request.error(function(data){
-            console.log('Error: ' + data);
-        });
-    }
+        $scope.hideAddReminder = function() {
+            $scope.showAddReminderSlideDown = false;
 
-    $scope.updateReminders = function() {
-        var request = $http.post('/api/reminders', $scope.reminders);
-        request.success(function(data) {
-            $scope.reminders = data;
-            console.log($scope.reminders.length);
-        });
-        request.error(function(data){
-            console.log('Error: ' + data);
-        });
-    }
+        }
 
-    $scope.deleteReminder = function($index, reminder) {
-        $scope.reminders.splice($index, 1);
-        $scope.$emit('reminderDeleted', reminder);
+        $scope.createNewReminder = function() {
+            $scope.reminders.push($scope.newReminder);
+            $http.post('/api/reminders', $scope.reminders).
+                then(function onSuccess(response) {
+                    var data = response.data;
+                    $scope.reminders = data;
+                    $scope.hideAddReminder();
+                }, function onError(response) {
+                    var data = response.data;
+                    console.error('Error: ' + data);
+                });
+        }
 
-        var request = $http.delete('/api/reminders/' + reminder.id);
-        request.success(function(data) {
-            /* Nothing */
-        });
-        request.error(function(data){
-            console.log('Error: ' + data);
-        });
-    }
+        $scope.updateReminders = function() {
+            $http.post('/api/reminders', $scope.reminders).
+                then(function onSuccess(response) {
+                    var data = response.data;
+                    $scope.reminders = data;
+                }, function onError(response) {
+                    var data = response.data;
+                    console.error('Error: ' + data);
+                });
+        }
 
-    function init() {
-        var request = $http.get('/api/reminders');
-        request.success(function(data) {
-            $scope.reminders = data;
-        });
-        request.error(function(data){
-            console.log('Error: ' + data);
-        });
-    }
+        $scope.deleteReminder = function($index, reminder) {
+            $scope.reminders.splice($index, 1);
+            $scope.$emit('reminderDeleted', reminder);
 
-    init();
-});
+            $http.delete('/api/reminders/' + reminder.id).
+                then(function onSuccess(response) {
+                    /* Nothing */
+                }, function onError(response) {
+                    var data = response.data;
+                    console.error('Error: ' + data);
+                });
+        }
+
+        function init() {
+            $http.get('/api/reminders').
+                then(function onSuccess(response) {
+                    var data = response.data;
+                    $scope.reminders = data;
+                }, function onError(response) {
+                    var data = response.data;
+                    console.error('Error: ' + data);
+                });
+        }
+
+        init();
+    });
+
+})();
+

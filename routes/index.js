@@ -37,6 +37,7 @@ router.delete('/api/reminders/:id', function(req, res) {
     reminders = reminders.filter(function(a){
         return a['id'] != id;
     });
+    console.log(reminders);
     res.json(reminders);
 });
 
