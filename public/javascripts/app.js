@@ -1,73 +1,61 @@
-(function() {
+(function () {
     'use strict';
 
-    var app = angular.module('forgetMeKnotApp', ['ngAnimate']);
+    angular
+        .module('app', ['ngRoute', 'ngCookies'])
+        .config(config)
+        .run(run);
 
-    app.controller('myController', function($scope, $http) {
-        $scope.showAddReminderSlideDown = false;
-        $scope.newReminder = {"title": "Call my Mom", "remindEveryDays": 7};
+    config.$inject = ['$routeProvider', '$locationProvider'];
+    function config($routeProvider, $locationProvider) {
+        $routeProvider
+            .when('/', {
+                controller: 'HomeController',
+                templateUrl: 'views/home.view.html',
+                controllerAs: 'vm'
+            })
 
-        $scope.reminders = [];
+            .when('/reminders', {
+                controller: 'RemindersController',
+                templateUrl: 'views/reminders.view.html',
+                controllerAs: 'vm'
+            })
 
-        $scope.showAddReminder = function() {
-            $scope.showAddReminderSlideDown = true;
+            .when('/login', {
+                controller: 'LoginController',
+                templateUrl: 'views/login.view.html',
+                controllerAs: 'vm'
+            })
+
+            .when('/register', {
+                controller: 'RegisterController',
+                templateUrl: 'views/register.view.html',
+                controllerAs: 'vm'
+            })
+
+            .otherwise({ redirectTo: '/login' });
+    }
+
+    run.$inject = ['$rootScope', '$location', '$cookies', '$http'];
+    function run($rootScope, $location, $cookies, $http) {
+        // keep user logged in after page refresh
+        $rootScope.globals = $cookies.getObject('globals') || {};
+        if ($rootScope.globals.currentUser) {
+            $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata;
         }
 
-        $scope.hideAddReminder = function() {
-            $scope.showAddReminderSlideDown = false;
+        $rootScope.$on('$locationChangeStart', function (event, next, current) {
+            // redirect to login page if not logged in and trying to access a restricted page
+            var restrictedPage = $.inArray($location.path(), ['/login', '/register']) === -1;
+            var loggedIn = $rootScope.globals.currentUser;
+            if (restrictedPage && !loggedIn) {
+                $location.path('/login');
+            }
+        });
 
-        }
-
-        $scope.createNewReminder = function() {
-            $scope.reminders.push($scope.newReminder);
-            $http.post('/api/reminders', $scope.reminders).
-                then(function onSuccess(response) {
-                    var data = response.data;
-                    $scope.reminders = data;
-                    $scope.hideAddReminder();
-                }, function onError(response) {
-                    var data = response.data;
-                    console.error('Error: ' + data);
-                });
-        }
-
-        $scope.updateReminders = function() {
-            $http.post('/api/reminders', $scope.reminders).
-                then(function onSuccess(response) {
-                    var data = response.data;
-                    $scope.reminders = data;
-                }, function onError(response) {
-                    var data = response.data;
-                    console.error('Error: ' + data);
-                });
-        }
-
-        $scope.deleteReminder = function($index, reminder) {
-            $scope.reminders.splice($index, 1);
-            $scope.$emit('reminderDeleted', reminder);
-
-            $http.delete('/api/reminders/' + reminder.id).
-                then(function onSuccess(response) {
-                    /* Nothing */
-                }, function onError(response) {
-                    var data = response.data;
-                    console.error('Error: ' + data);
-                });
-        }
-
-        function init() {
-            $http.get('/api/reminders').
-                then(function onSuccess(response) {
-                    var data = response.data;
-                    $scope.reminders = data;
-                }, function onError(response) {
-                    var data = response.data;
-                    console.error('Error: ' + data);
-                });
-        }
-
-        init();
-    });
-
+        $rootScope.isCurrentPath = function (path) {
+            console.log(path, $location.path());
+            return $location.path() == path;
+        };
+    }
 })();
-

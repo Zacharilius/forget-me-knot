@@ -7,6 +7,22 @@ router.get('/', function(req, res, next) {
   res.sendFile(path.join(__dirname, '../', 'views', 'index.html'));
 });
 
+router.get('/views/home.view.html', function(req, res, next) {
+  res.sendFile(path.join(__dirname, '../', 'views', 'home.view.html'));
+});
+
+router.get('/views/login.view.html', function(req, res, next) {
+  res.sendFile(path.join(__dirname, '../', 'views', 'login.view.html'));
+});
+
+router.get('/views/register.view.html', function(req, res, next) {
+  res.sendFile(path.join(__dirname, '../', 'views', 'register.view.html'));
+});
+
+router.get('/views/reminders.view.html', function(req, res, next) {
+  res.sendFile(path.join(__dirname, '../', 'views', 'reminders.view.html'));
+});
+
 module.exports = router;
 
 var reminders = [

@@ -18,6 +18,8 @@
     "angular": "1.6.2",
     "font-roboto": "^0.0.2",
     "angular-animate": "1.6.2",
-    "bootstrap": "^3.3.7"
+    "bootstrap": "^3.3.7",
+    "angular-route": "^1.6.2",
+    "angular-cookies": "^1.6.2"
   }
 }
