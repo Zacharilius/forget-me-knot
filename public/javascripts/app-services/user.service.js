@@ -45,7 +45,7 @@
         // private functions
 
         function handleSuccess(res) {
-            return res.data;
+            return res;
         }
 
         function handleError(error) {

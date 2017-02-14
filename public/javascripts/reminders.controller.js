@@ -27,7 +27,7 @@
 
         vm.createNewReminder = function() {
             vm.reminders.push(vm.newReminder);
-            $http.post('/api/reminders', vm.reminders).
+            $http.post('/api/reminders/' + $rootScope.globals.currentUser.username, vm.reminders).
                 then(function onSuccess(response) {
                     var data = response.data;
                     vm.reminders = data;
@@ -39,7 +39,7 @@
         }
 
         vm.updateReminders = function() {
-            $http.post('/api/reminders', vm.reminders).
+            $http.post('/api/reminders/' + $rootScope.globals.currentUser.username, vm.reminders).
                 then(function onSuccess(response) {
                     var data = response.data;
                     vm.reminders = data;
@@ -53,7 +53,7 @@
             vm.reminders.splice($index, 1);
             vm.$emit('reminderDeleted', reminder);
 
-            $http.delete('/api/reminders/' + reminder.id).
+            $http.delete('/api/reminders/' + reminder.username).
                 then(function onSuccess(response) {
                     /* Nothing */
                 }, function onError(response) {
@@ -63,7 +63,7 @@
         }
 
         function initReminders() {
-            $http.get('/api/reminders').
+            $http.get('/api/reminders/' + $rootScope.globals.currentUser.username).
                 then(function onSuccess(response) {
                     var data = response.data;
                     vm.reminders = data;
@@ -89,83 +89,3 @@
     }
 
 })();
-
-
-
-// (function() {
-//     'use strict';
-
-//     angular
-//         .module('app', ['ngAnimate'])
-//         .controller('RemindersController', RemindersController);
-
-//     RemindersController.$inject = ['UserService', '$rootScope', 'FlashService'];
-//     function RemindersController(UserService, $rootScope, FlashService) {
-//         var vm = this;
-
-//         vm.showAddReminderSlideDown = false;
-//         vm.newReminder = {"title": "Call my Mom", "remindEveryDays": 7};
-
-//         vm.reminders = [];
-
-        // vm.showAddReminder = function() {
-        //     vm.showAddReminderSlideDown = true;
-        // }
-
-        // vm.hideAddReminder = function() {
-        //     vm.showAddReminderSlideDown = false;
-
-        // }
-
-        // vm.createNewReminder = function() {
-        //     vm.reminders.push(vm.newReminder);
-        //     $http.post('/api/reminders', vm.reminders).
-        //         then(function onSuccess(response) {
-        //             var data = response.data;
-        //             vm.reminders = data;
-        //             vm.hideAddReminder();
-        //         }, function onError(response) {
-        //             var data = response.data;
-        //             console.error('Error: ' + data);
-        //         });
-        // }
-
-        // vm.updateReminders = function() {
-        //     $http.post('/api/reminders', vm.reminders).
-        //         then(function onSuccess(response) {
-        //             var data = response.data;
-        //             vm.reminders = data;
-        //         }, function onError(response) {
-        //             var data = response.data;
-        //             console.error('Error: ' + data);
-        //         });
-        // }
-
-        // vm.deleteReminder = function($index, reminder) {
-        //     vm.reminders.splice($index, 1);
-        //     vm.$emit('reminderDeleted', reminder);
-
-        //     $http.delete('/api/reminders/' + reminder.id).
-        //         then(function onSuccess(response) {
-        //             /* Nothing */
-        //         }, function onError(response) {
-        //             var data = response.data;
-        //             console.error('Error: ' + data);
-        //         });
-        // }
-
-        // function initController() {
-        //     $http.get('/api/reminders').
-        //         then(function onSuccess(response) {
-        //             var data = response.data;
-        //             vm.reminders = data;
-        //         }, function onError(response) {
-        //             var data = response.data;
-        //             console.error('Error: ' + data);
-        //         });
-        // }
-
-//         initController();
-//     };
-
-// })();
