@@ -54,7 +54,6 @@
         });
 
         $rootScope.isCurrentPath = function (path) {
-            console.log(path, $location.path());
             return $location.path() == path;
         };
     }

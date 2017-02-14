@@ -44,7 +44,7 @@
                     <a href="#!/register">Register</a>
                 </li>
                 <li ng-class="{ active: isCurrentPath('/login') }" ng-if="!globals.currentUser">
-                    <a href="#!/login"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></a>
+                    <a href="#!/login">Login</span></a>
                 </li>
                 <li ng-if="globals.currentUser">
                     <a href="#!/login"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a>
@@ -55,16 +55,6 @@
     </nav>
 
     <div id="fmk-main" class="container" role="main">
-      <div class="jumbotron">
-        <h1>Forget-Me-Knot</h1>
-        <p>Create and receive periodic, random reminders by email and by text.</p>
-        <p>Want to be reminded to call your Mom every week but don't want to call
-        on the same day. Create a Forget-Me-Knot reminder and be reminded on a
-        random day every week to call your mother.</p>
-      </div>
-    </div>
-
-    <div class="container">
         <div class="col-xs-12">
             <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
             <div ng-view></div>
@@ -85,9 +75,9 @@
 
     <script src="javascripts/app-services/authentication.service.js" type="text/javascript"></script>
     <script src="javascripts/app-services/flash.service.js" type="text/javascript"></script>
-<!--     <script src="javascripts/app-services/user.service.js" type="text/javascript"></script> -->
-    <script src="javascripts/app-services/user.service.local-storage.js" type="text/javascript"></script>
-
+    <script src="javascripts/app-services/user.service.js" type="text/javascript"></script>
+<!--     <script src="javascripts/app-services/user.service.local-storage.js" type="text/javascript"></script>
+ -->
     <script src="javascripts/home.controller.js" type="text/javascript"></script>
     <script src="javascripts/reminders.controller.js" type="text/javascript"></script>
     <script src="javascripts/login.controller.js" type="text/javascript"></script>
