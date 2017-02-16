@@ -43,7 +43,7 @@ var reminders = [
         {"id": 10, "ownerId": 0, "title": "Call Ex-wife", "startReminderTime": "2017-02-04T22:04:44.524Z", "lastReminderTime": "2017-02-05T22:04:44.524Z", "remindEveryDays": 5}
     ];
 
-function getRemindersForUserId(id) {
+function getRemindersForUserId(ownerId) {
     var userReminders = reminders.filter(function(a){
         return a['ownerId'] == ownerId;
     });
@@ -53,8 +53,8 @@ function getRemindersForUserId(id) {
 router.get('/api/reminders/:username', function(req, res) {
     var username = req.params.username;
     var user = getUserForUsername(username);
-    var ownerId = user.id;
-
+    var ownerId = user['id'];
+    var userReminders = getRemindersForUserId(ownerId);
     res.json(userReminders);
 });
 
