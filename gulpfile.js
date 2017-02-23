@@ -1,4 +1,5 @@
 var gulp    = require('gulp');
+var cleanCSS = require('gulp-clean-css');
 var concat = require('gulp-concat');
 var uglify  = require('gulp-uglify');
 var watch = require('gulp-watch');
@@ -15,10 +16,20 @@ gulp.task('scripts', function() {
     .pipe(gulp.dest('app_client'));
 });
 
+gulp.task('stylesheets', function() {
+  gulp.src(['./public/stylesheets/*.css', '!./public/stylesheets/app.min.css'])
+    .pipe(cleanCSS({compatibility: 'ie8'}))
+      .pipe(concat('./public/stylesheets/app.min.css'))
+      .pipe(gulp.dest('./'));
+});
+
 gulp.task('watch', function() {
   watch(['./app_client/**/*.js', '!./app_client/**/*.test.js', '!./app_client/app.min.js'], function () {
     gulp.start('scripts');
   });
+  watch(['./public/stylesheets/*.css', '!./public/stylesheets/app.min.css'], function () {
+    gulp.start('stylesheets');
+  });
 });
 
-gulp.task('default', ['scripts', 'watch']);
+gulp.task('default', ['scripts', 'stylesheets', 'watch']);
