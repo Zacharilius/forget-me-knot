@@ -1,5 +1,4 @@
 (function() {
-
   angular
     .module('forgetMeKnotApp')
     .service('fmkData', fmkData);
@@ -19,5 +18,4 @@
       getProfile : getProfile
     };
   }
-
 })();

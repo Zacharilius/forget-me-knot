@@ -7,10 +7,15 @@ var auth = jwt({
 });
 
 var ctrlProfile = require('../controllers/profile');
+var ctrlReminders = require('../controllers/reminders');
 var ctrlAuth = require('../controllers/authentication');
 
 // profile
-router.get('/profile', auth, ctrlProfile.profileRead);
+router.get('/profile', auth, ctrlProfile.profileGet);
+
+// reminders
+router.post('/reminders', auth, ctrlReminders.reminderPost);
+router.delete('/reminders/:id', auth, ctrlReminders.reminderDelete);
 
 // authentication
 router.post('/register', ctrlAuth.register);

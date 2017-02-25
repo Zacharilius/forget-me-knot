@@ -1,8 +1,8 @@
 (function () {
 
   angular
-  .module('forgetMeKnotApp')
-  .controller('loginCtrl', loginCtrl);
+    .module('forgetMeKnotApp')
+    .controller('loginCtrl', loginCtrl);
 
   loginCtrl.$inject = ['$location', 'authentication'];
   function loginCtrl($location, authentication) {
