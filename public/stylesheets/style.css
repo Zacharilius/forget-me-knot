@@ -42,6 +42,10 @@ body {
     background-color: #9797FF;
 }
 
+.glyphicon-log-out {
+    cursor: pointer;
+}
+
 /* Main */
 #fmk-main {
     margin: 60px auto;

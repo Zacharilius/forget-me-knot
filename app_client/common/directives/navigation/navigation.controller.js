@@ -10,6 +10,11 @@
 
     vm.isLoggedIn = authentication.isLoggedIn();
 
+    vm.logout = function() {
+      authentication.logout();
+      $location.path('/');
+    }
+
     vm.currentUser = authentication.currentUser();
 
     vm.isCurrentPath = function (path) {
