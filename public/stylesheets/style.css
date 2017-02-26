@@ -55,10 +55,23 @@ body {
     margin: 60px auto;
 }
 
-/* Reminders */
+/* Profile */
 .fmk-reminder-container {
     padding: 16px;
     position: relative;
+}
+
+.fmk-gravatar-image {
+    width: 100%;
+}
+
+.fmk-username-title {
+    font-size: 24px;
+}
+
+.fmk-form-label {
+    text-align: right;
+    font-weight: 500;
 }
 
 .fmk-reminder-container .input-group {
