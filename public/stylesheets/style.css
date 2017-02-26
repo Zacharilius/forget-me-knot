@@ -46,6 +46,10 @@ body {
     cursor: pointer;
 }
 
+#fmk-alerts {
+    margin: 60px auto;
+}
+
 /* Main */
 #fmk-main {
     margin: 60px auto;

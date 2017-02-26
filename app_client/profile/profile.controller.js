@@ -4,9 +4,9 @@
     .module('forgetMeKnotApp')
     .controller('profileCtrl', profileCtrl);
 
-  profileCtrl.$inject = ['$location', '$http', 'fmkData', 'authentication'];
+  profileCtrl.$inject = ['$location', '$http', 'fmkData', 'fmkAlert', 'authentication'];
 
-  function profileCtrl($location, $http, fmkData, authentication) {
+  function profileCtrl($location, $http, fmkData, fmkAlert, authentication) {
     var vm = this;
 
     /* User */
@@ -43,8 +43,8 @@
       }).success(function(data) {
         vm.reminders.push(data);
         vm.hideAddReminder();
-      }).error(function (e) {
-        console.error(e);
+      }).error(function (err) {
+        fmkAlert.showErrorAlert(err.message);
       });
     };
 
@@ -61,8 +61,8 @@
             break;
           }
         }
-      }).error(function (e) {
-        console.error(e);
+      }).error(function (err) {
+        fmkAlert.showErrorAlert(err.message);
       });
     };
   }

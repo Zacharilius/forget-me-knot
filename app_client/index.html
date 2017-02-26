@@ -18,8 +18,18 @@
 
   <link rel="stylesheet" href="stylesheets/app.min.css">
 </head>
-<body>
+<body ng-cloak>
   <div ng-view id="fmk-main"></div>
+  <div id="fmk-alerts">
+    <div ng-show="showSuccess" class="alert alert-success" role="alert">
+      <strong>Success</strong>
+      {{ successMessage }}
+    </div>
+    <div ng-show="showError" class="alert alert-danger" role="alert">
+      <strong>Whoops</strong>
+      {{ errorMessage }}
+    </div>
+  </div>
 
   <script src="lib/jquery/dist/jquery.min.js"></script>
   <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
