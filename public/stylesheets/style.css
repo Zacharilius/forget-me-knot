@@ -79,7 +79,8 @@ body {
 }
 
 /* Add new reminder */
-#fmk-add-slide-down {
+#fmk-add-new-reminder {
+    margin-top: 30px;
 }
 
 .fmk-container {

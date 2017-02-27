@@ -33,7 +33,6 @@
     <button ng-show="!vm.showAddReminderSlideDown" ng-click="vm.showAddReminder()" type="button" class="btn btn-default">Add new Reminder</button>
     <button ng-show="!vm.showAddReminderSlideDown" ng-click="vm.updateReminders()" type="button" class="btn btn-default">Update Reminders</button>
 
-    <button ng-show="vm.showAddReminderSlideDown" ng-click="vm.createNewReminder()" type="button" class="btn btn-default">Create new Reminder</button>
     <button ng-show="vm.showAddReminderSlideDown" ng-click="vm.hideAddReminder()" type="button" class="btn btn-default">View Reminders</button>
 
     <div ng-show="vm.showAddReminderSlideDown">
@@ -48,6 +47,7 @@
                 <input ng-model="vm.newReminder.remindEveryDays"  type="text" class="form-control" placeholder="{{vm.newReminder.remindEveryDays}}" aria-label="Amount (to the nearest dollar)">
                 <span class="input-group-addon">days</span>
             </div>
+            <button id="fmk-add-new-reminder" class="btn btn-success pull-right" ng-show="vm.showAddReminderSlideDown" ng-click="vm.createNewReminder()" type="button">Create</button>
         </div>
     </div>
 
