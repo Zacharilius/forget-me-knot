@@ -21,10 +21,16 @@
         console.error(e);
       });
 
+    /* ====================================================================== */
     /* Reminders */
+
     vm.reminders = [];
+
+    /* ---------------------------------------------------------------------- */
+    /* Add Reminder */
+
     vm.showAddReminderSlideDown = false;
-    vm.newReminder = {"title": "Call my Mom", "remindEveryDays": 7};
+    vm.newReminder = {"type": "add", "title": "Call my Mom", "remindEveryDays": 7};
 
     vm.showAddReminder = function() {
       vm.showAddReminderSlideDown = true;
@@ -32,7 +38,6 @@
 
     vm.hideAddReminder = function() {
       vm.showAddReminderSlideDown = false;
-
     }
 
     vm.createNewReminder = function() {
@@ -47,6 +52,49 @@
         fmkAlert.showErrorAlert(err.message);
       });
     };
+
+    /* ---------------------------------------------------------------------- */
+    /* Update Reminder */
+
+    vm.showUpdateReminderSlideDown = false;
+    vm.focusedUpdateReminder = {"type": "update"};
+
+    vm.renderUpdateReminderSlideDown = function(reminder) {
+      vm.clearActiveReminders();
+      event.currentTarget.classList.add('fmk-is-active');
+      vm.focusedUpdateReminder = reminder;
+      vm.focusedUpdateReminder.type = 'update';
+      vm.showUpdateReminderSlideDown = true;
+      event.stopPropagation();
+    }
+
+    vm.hideUpdateReminder = function() {
+      vm.showUpdateReminderSlideDown = false;
+      vm.clearActiveReminders();
+    }
+
+    vm.clearActiveReminders = function() {
+      var reminders = document.querySelectorAll('.fmk-reminder-container') ;
+      for (var i = 0; i < reminders.length; i++) {
+        var reminder = reminders[i];
+        reminder.classList.remove('fmk-is-active');
+      }
+    }
+
+    vm.updateReminder = function() {
+      $http.post('/api/reminders', vm.focusedUpdateReminder, {
+        headers: {
+          Authorization: 'Bearer '+ authentication.getToken()
+        }
+      }).success(function(data) {
+        vm.hideUpdateReminder();
+      }).error(function (err) {
+        fmkAlert.showErrorAlert(err.message);
+      });
+    };
+
+    /* ---------------------------------------------------------------------- */
+    /* Delete Reminder */
 
     vm.deleteReminder = function(reminder) {
       $http.delete('/api/reminders/' + reminder._id, {

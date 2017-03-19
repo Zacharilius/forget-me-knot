@@ -1,58 +1,58 @@
 <navigation></navigation>
-
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 well well-lg">
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-2">
-            <img class="fmk-gravatar-image" src="{{ vm.user.gravatarSrc }}" />
-          </div>
-          <div class="col-xs-8">
-            <form  class="form-horizontal">
-              <div class="fmk-username-title">Hello {{ vm.user.name }}</div>
-              <div>
-                <span class="col-xs-3 fmk-form-label">Full name</span>
-                <span class="form-control-staticm">{{ vm.user.name }}</span>
-              </div>
-              <div>
-                <span class="col-xs-3 fmk-form-label">Email</span>
-                <span class="form-control-static">{{ vm.user.email }}</span>
-              </div>
-            </form>
+<div ng-click="vm.hideUpdateReminder()">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 well well-lg">
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-2">
+              <img class="fmk-gravatar-image" src="{{ vm.user.gravatarSrc }}" />
+            </div>
+            <div class="col-xs-8">
+              <form  class="form-horizontal">
+                <div class="fmk-username-title">Hello {{ vm.user.name }}</div>
+                <div>
+                  <span class="col-xs-3 fmk-form-label">Full name</span>
+                  <span class="form-control-staticm">{{ vm.user.name }}</span>
+                </div>
+                <div>
+                  <span class="col-xs-3 fmk-form-label">Email</span>
+                  <span class="form-control-static">{{ vm.user.email }}</span>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="container">
-  <div class="row">
-    <h3>Reminders</h3>
-    <button ng-show="!vm.showAddReminderSlideDown" ng-click="vm.showAddReminder()" type="button" class="btn btn-default">Add new Reminder</button>
-    <button ng-show="!vm.showAddReminderSlideDown" ng-click="vm.updateReminders()" type="button" class="btn btn-default">Update Reminders</button>
+  <div class="container">
+    <div class="row">
+      <h3>Reminders</h3>
+      <button ng-show="!vm.showAddReminderSlideDown" ng-click="vm.showAddReminder()" type="button" class="btn btn-default">Add new Reminder</button>
+      <button ng-show="vm.showAddReminderSlideDown" ng-click="vm.hideAddReminder()" type="button" class="btn btn-default">View Reminders</button>
 
-    <button ng-show="vm.showAddReminderSlideDown" ng-click="vm.hideAddReminder()" type="button" class="btn btn-default">View Reminders</button>
+      <button ng-show="vm.showUpdateReminderSlideDown" ng-click="vm.updateReminder()" type="button" class="btn btn-default">Update Reminders</button>
 
-    <div ng-show="vm.showAddReminderSlideDown">
-        <div id="fmk-add-slide-down" class="col-md-6 col-lg-4 fmk-reminder-container">
-            <h2>Add Reminder</h2>
+      <div ng-show="vm.showAddReminderSlideDown">
+          <div id="fmk-add-slide-down" class="col-md-6 col-lg-4 fmk-reminder-container">
+              <h2>Add Reminder</h2>
 
-            <div class="input-group">
-                <input ng-model="vm.newReminder.title" type="text" class="form-control" placeholder="{{vm.newReminder.title}}" aria-label="Amount (to the nearest dollar)">
-            </div>
-            <div class="input-group">
-                <span class="input-group-addon">Remind me every</span>
-                <input ng-model="vm.newReminder.remindEveryDays"  type="text" class="form-control" placeholder="{{vm.newReminder.remindEveryDays}}" aria-label="Amount (to the nearest dollar)">
-                <span class="input-group-addon">days</span>
-            </div>
-            <button id="fmk-add-new-reminder" class="btn btn-success pull-right" ng-show="vm.showAddReminderSlideDown" ng-click="vm.createNewReminder()" type="button">Create</button>
-        </div>
-    </div>
+              <div class="input-group">
+                  <input ng-model="vm.newReminder.title" type="text" class="form-control" placeholder="{{vm.newReminder.title}}" aria-label="Amount (to the nearest dollar)">
+              </div>
+              <div class="input-group">
+                  <span class="input-group-addon">Remind me every</span>
+                  <input ng-model="vm.newReminder.remindEveryDays"  type="text" class="form-control" placeholder="{{vm.newReminder.remindEveryDays}}" aria-label="Amount (to the nearest dollar)">
+                  <span class="input-group-addon">days</span>
+              </div>
+              <button id="fmk-add-new-reminder" class="btn btn-success pull-right" ng-show="vm.showAddReminderSlideDown" ng-click="vm.createNewReminder()" type="button">Create</button>
+          </div>
+      </div>
 
-    <div ng-show="!vm.showAddReminderSlideDown">
-        <div class="col-md-6 col-lg-4 fmk-reminder-container" ng-repeat="reminder in vm.reminders">
+      <div id="fmk-reminder-main" ng-show="!vm.showAddReminderSlideDown">
+          <div class="col-md-6 col-lg-4 fmk-reminder-container" ng-repeat="reminder in vm.reminders" ng-click="vm.renderUpdateReminderSlideDown(reminder)">
             <p>{{reminder.title}} every {{reminder.remindEveryDays}} days</p>
             <div class="input-group">
                 <input ng-model="reminder.title" type="text" class="form-control" placeholder="{{reminder.title}}" aria-label="Amount (to the nearest dollar)">
@@ -64,6 +64,7 @@
             </div>
             <span ng-click="vm.deleteReminder(reminder)" class="fmk-close-reminder-container">X<span class="fmk-delete-reminder-tooltip">Delete</span></span>
         </div>
+      </div>
     </div>
   </div>
 </div>

@@ -55,10 +55,20 @@ body {
     margin: 60px auto;
 }
 
+#fmk-reminder-main {
+    padding-top: 10px;
+}
+
 /* Profile */
 .fmk-reminder-container {
     padding: 16px;
     position: relative;
+}
+
+.fmk-reminder-container.fmk-is-active {
+             box-shadow: 0px 0px 5px #FFEC2C;
+        -moz-box-shadow: 0 0 5px #FFEC2C;
+     -webkit-box-shadow: 0 0 5px #FFEC2C;
 }
 
 .fmk-gravatar-image {
