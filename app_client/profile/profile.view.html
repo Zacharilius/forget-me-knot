@@ -47,6 +47,11 @@
                   <input ng-model="vm.newReminder.remindEveryDays"  type="text" class="form-control" placeholder="{{vm.newReminder.remindEveryDays}}" aria-label="Amount (to the nearest dollar)">
                   <span class="input-group-addon">days</span>
               </div>
+              <div class="input-group">
+                <div>Reminder Type</div>
+                <label class="radio-inline"><input type="radio" ng-model="vm.newReminder.reminderType" name="newReminder" value="email">Email</label>
+                <label class="radio-inline"><input type="radio" ng-model="vm.newReminder.reminderType" name="newReminder" value="text">Text Message</label>
+              </div>
               <button id="fmk-add-new-reminder" class="btn btn-success pull-right" ng-show="vm.showAddReminderSlideDown" ng-click="vm.createNewReminder()" type="button">Create</button>
           </div>
       </div>
@@ -61,6 +66,11 @@
                 <span class="input-group-addon">Remind me every</span>
                 <input ng-model="reminder.remindEveryDays"  type="text" class="form-control" placeholder="{{reminder.remindEveryDays}}" aria-label="Remind after how many days">
                 <span class="input-group-addon">days</span>
+            </div>
+            <div class="input-group">
+              <div>Reminder Type</div>
+              <label class="radio-inline"><input type="radio" ng-model="reminder.reminderType" name="reminderType{{$index}}" value="email">Email</label>
+              <label class="radio-inline"><input type="radio" ng-model="reminder.reminderType" name="reminderType{{$index}}" value="text">Text Message</label>
             </div>
             <span ng-click="vm.deleteReminder(reminder)" class="fmk-close-reminder-container">X<span class="fmk-delete-reminder-tooltip">Delete</span></span>
         </div>

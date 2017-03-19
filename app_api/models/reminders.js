@@ -17,7 +17,12 @@ var reminderSchema = new mongoose.Schema({
   remindersSent: [
     {sentTime: Date}
   ],
-  remindEveryDays: Number
+  remindEveryDays: Number,
+  reminderType: {
+    type: String,
+    enum: ['text', 'email'],
+    default: 'email'
+  }
 });
 
 mongoose.model('Reminder', reminderSchema);

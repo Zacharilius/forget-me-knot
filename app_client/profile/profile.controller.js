@@ -30,7 +30,7 @@
     /* Add Reminder */
 
     vm.showAddReminderSlideDown = false;
-    vm.newReminder = {"type": "add", "title": "Call my Mom", "remindEveryDays": 7};
+    vm.newReminder = {"type": "add", "reminderType": "email", "title": "Call my Mom", "remindEveryDays": 7};
 
     vm.showAddReminder = function() {
       vm.showAddReminderSlideDown = true;
