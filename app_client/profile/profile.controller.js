@@ -9,7 +9,9 @@
   function profileCtrl($location, $http, fmkData, fmkAlert, authentication) {
     var vm = this;
 
+    /* ====================================================================== */
     /* User */
+
     vm.user = {};
 
     fmkData.getProfile()
@@ -20,6 +22,22 @@
       .error(function (e) {
         console.error(e);
       });
+
+    /* ====================================================================== */
+    /* Email Verification */
+
+    vm.verifyEmailCode = function() {
+      $http.post('/api/user/verify-email', vm.user.emailVerificationCodeInput, {
+        headers: {
+          Authorization: 'Bearer '+ authentication.getToken()
+        }
+      }).success(function(data) {
+        vm.user.emailVerified = true;
+        fmkAlert.showSuccessAlert('Successfully verified email.');
+      }).error(function (err) {
+        fmkAlert.showErrorAlert(err.message);
+      });
+    }
 
     /* ====================================================================== */
     /* Reminders */

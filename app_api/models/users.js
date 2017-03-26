@@ -8,6 +8,15 @@ var userSchema = new mongoose.Schema({
     unique: true,
     required: true
   },
+  emailVerified: {
+    type: Boolean,
+    default: false,
+    required: true
+  },
+  emailVerificationCode: {
+    type: String,
+    required: true
+  },
   name: {
     type: String,
     required: true
@@ -37,5 +46,23 @@ userSchema.methods.generateJwt = function() {
     exp: parseInt(expiry.getTime() / 1000),
   }, "MY_SECRET"); // DO NOT KEEP YOUR SECRET IN THE CODE!
 };
+
+userSchema.methods.generateVerificationCode = function() {
+  var verificationCode = [];
+  var possibleCharacters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+  var passCodeSize = 6;
+  for (var i = 0; i < passCodeSize; i++) {
+    var randomInt = getRandomInt(0, 61)
+    verificationCode.push(possibleCharacters[randomInt]);
+  }
+  return verificationCode.join('');
+}
+
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min;
+}
 
 mongoose.model('User', userSchema);

@@ -62,8 +62,20 @@ body {
 /* Profile */
 .fmk-reminder-container {
     padding: 16px;
-    margin-top: 20px;
+    margin: 20px 5px;
     position: relative;
+}
+
+@media (min-width: 992px) {
+    .fmk-reminder-container.col-md-6 {
+        width: calc(50% - 10px); /* 10px is fmk-reminder-container left/right margins */
+    }
+}
+
+@media (min-width: 1200px) {
+    .fmk-reminder-container.col-lg-6 {
+        width: calc(33.33333333% - 10px); /* 10px is fmk-reminder-container left/right margins */
+    }
 }
 
 .fmk-card {

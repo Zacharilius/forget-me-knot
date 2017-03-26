@@ -12,6 +12,7 @@ var ctrlAuth = require('../controllers/authentication');
 
 // profile
 router.get('/profile', auth, ctrlProfile.profileGet);
+router.post('/user/verify-email', auth, ctrlProfile.verifyEmailPost);
 
 // reminders
 router.post('/reminders', auth, ctrlReminders.reminderPost);

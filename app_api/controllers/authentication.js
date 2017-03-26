@@ -23,6 +23,8 @@ module.exports.register = function(req, res) {
 
   user.setPassword(req.body.password);
 
+  user.emailVerificationCode = user.generateVerificationCode();
+
   user.save(function(err) {
     var token;
     token = user.generateJwt();
@@ -31,7 +33,6 @@ module.exports.register = function(req, res) {
       "token" : token
     });
   });
-
 };
 
 module.exports.login = function(req, res) {

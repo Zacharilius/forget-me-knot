@@ -1,4 +1,5 @@
 <navigation></navigation>
+
 <div ng-click="vm.hideUpdateReminder()">
   <div class="container">
     <div class="row">
@@ -18,6 +19,13 @@
                 <div>
                   <span class="col-xs-3 fmk-form-label">Email</span>
                   <span class="form-control-static">{{ vm.user.email }}</span>
+                </div>
+              </form>
+              <form ng-show="!vm.user.emailVerified" class="form-horizontal">
+                <div>
+                  <span class="col-xs-3 fmk-form-label">Email Code</span>
+                  <input class="col-xs-6" ng-model="vm.user.emailVerificationCodeInput"  type="text" class="form-control" placeholder="" aria-label="Email verification code.">
+                  <button ng-click="vm.verifyEmailCode()" type="button" class="btn btn-default">Verify Email Code</button>
                 </div>
               </form>
             </div>
@@ -40,11 +48,11 @@
               <h2>Add Reminder</h2>
 
               <div class="input-group">
-                  <input ng-model="vm.newReminder.title" type="text" class="form-control" placeholder="{{vm.newReminder.title}}" aria-label="Amount (to the nearest dollar)">
+                  <input ng-model="vm.newReminder.title" type="text" class="form-control" placeholder="{{vm.newReminder.title}}" aria-label="Reminder Title">
               </div>
               <div class="input-group">
                   <span class="input-group-addon">Remind me every</span>
-                  <input ng-model="vm.newReminder.remindEveryDays"  type="text" class="form-control" placeholder="{{vm.newReminder.remindEveryDays}}" aria-label="Amount (to the nearest dollar)">
+                  <input ng-model="vm.newReminder.remindEveryDays"  type="text" class="form-control" placeholder="{{vm.newReminder.remindEveryDays}}" aria-label="Remind after how many days">
                   <span class="input-group-addon">days</span>
               </div>
               <div class="input-group">
