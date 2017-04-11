@@ -49,17 +49,29 @@ function shouldSendReminder(reminder) {
 
 function sendReminderEmailFor(reminderMessage, userEmail) {
     var send = require('gmail-send')({
-        user: process.env.GMAIL_SMTP_USER || 'test@test.com', // Test Email
-        pass: process.env.GMAIL_SMTP_PASSWORD || 'password',  // Test Password
-        to:   userEmail,              // Send to yourself
+        user: process.env.GMAIL_SMTP_USER || 'test@test.com',
+        pass: process.env.GMAIL_SMTP_PASSWORD || 'password',
+        to:   userEmail,
         subject: 'Reminder',
-        text:    reminderMessage           // Plain text
-    })();                             // Send without any check
+        text:    reminderMessage
+    })();
 }
 
 function sendReminderTextFor(reminderMessage, phoneNumber) {
-    // TODO: Implement
-    console.log('Not Implemented');
+    // Twilio Credentials
+    var accountSid = process.env.TWILIO_SID;
+    var authToken = process.env.TWILIO_AUTH_TOKEN;
+
+    //require the Twilio module and create a REST client
+    var client = require('twilio')(accountSid, authToken);
+
+    client.messages.create({
+        to: process.env.MY_TWILIO_PHONE_NUMBER || "+2678675309",
+        from: phoneNumber,
+        body: reminderMessage,
+    }, function(err, message) {
+        console.log(message.sid);
+    });
 }
 
 sendReminders();

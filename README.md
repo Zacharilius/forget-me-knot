@@ -24,6 +24,12 @@ Visit site at: http://127.0.0.1:3000/
 $ export GMAIL_SMTP_USER=username@gmail.com
 $ export GMAIL_SMTP_PASSWORD=yourpassword
 
+$ export TWILIO_SID=twilioSID
+$ export TWILIO_AUTH_TOKEN=twilioAuthToken
+
 ### Production Email Setup
 $ heroku config:add GMAIL_SMTP_USER=email@gmail.com
 $ heroku config:add GMAIL_SMTP_PASSWORD=yourpassword
+
+$ heroku config:add TWILIO_SID=twilioSID
+$ heroku config:add TWILIO_AUTH_TOKEN=twilioAuthToken
